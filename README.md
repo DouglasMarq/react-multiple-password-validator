@@ -1,7 +1,7 @@
 # React Password Checklist
 
-[![npm version](https://img.shields.io/npm/v/multiple-password-validator)](https://www.npmjs.com/package/multiple-password-validator) ![Minzipped Size](https://img.shields.io/bundlephobia/minzip/multiple-password-validator) ![NPM Downloads](https://img.shields.io/npm/dw/multiple-password-validator) ![NPM License](https://img.shields.io/npm/l/multiple-password-validator)
-<br /> [![Build Status](https://api.travis-ci.com/DouglasMarq/multiple-password-validator.svg?branch=master&status=passed)](https://app.travis-ci.com/github/DouglasMarq/multiple-password-validator) [![Coverage Status](https://coveralls.io/repos/github/DouglasMarq/multiple-password-validator/badge.svg?branch=master)](https://coveralls.io/github/DouglasMarq/multiple-password-validator?branch=master) [![Issues](https://img.shields.io/github/issues/DouglasMarq/multiple-password-validator)](https://github.com/DouglasMarq/multiple-password-validator/issues) [![Pull Requests](https://img.shields.io/github/issues-pr/DouglasMarq/multiple-password-validator)](https://github.com/DouglasMarq/multiple-password-validator/pulls) [![Twitter](https://img.shields.io/twitter/follow/DouglasMarq.svg?style=social&label=@DouglasMarq)](https://twitter.com/IDPBBrisa)
+[![npm version](https://img.shields.io/npm/v/react-password-validator)](https://www.npmjs.com/package/react-password-validator) ![Minzipped Size](https://img.shields.io/bundlephobia/minzip/react-password-validator) ![NPM Downloads](https://img.shields.io/npm/dw/react-password-validator) ![NPM License](https://img.shields.io/npm/l/react-password-validator)
+<br /> [![Build Status](https://api.travis-ci.com/DouglasMarq/react-password-validator.svg?branch=master&status=passed)](https://app.travis-ci.com/github/DouglasMarq/react-password-validator) [![Coverage Status](https://coveralls.io/repos/github/DouglasMarq/react-password-validator/badge.svg?branch=master)](https://coveralls.io/github/DouglasMarq/react-password-validator?branch=master) [![Issues](https://img.shields.io/github/issues/DouglasMarq/react-password-validator)](https://github.com/DouglasMarq/react-password-validator/issues) [![Pull Requests](https://img.shields.io/github/issues-pr/DouglasMarq/react-password-validator)](https://github.com/DouglasMarq/react-password-validator/pulls) [![Twitter](https://img.shields.io/twitter/follow/DouglasMarq.svg?style=social&label=@DouglasMarq)](https://twitter.com/IDPBBrisa)
 
 A React Component to display the success or failure of password strength rules that updates as a user types.
 
@@ -11,9 +11,9 @@ A React Component to display the success or failure of password strength rules t
 
 ## Install in your project
 
-`npm install --save multiple-password-validator`
+`npm install --save react-password-validator`
 
-`yarn add multiple-password-validator`
+`yarn add react-password-validator`
 
 _Note: react is a peer dependency. You should be using this in a React project._
 
@@ -21,7 +21,7 @@ _Note: react is a peer dependency. You should be using this in a React project._
 
 ```
 import React, {useState} from "react"
-import PasswordChecklist from "multiple-password-validator"
+import PasswordChecklist from "react-password-validator"
 
 const SignUp = () => {
 	const [password, setPassword] = useState("")
@@ -49,7 +49,7 @@ const SignUp = () => {
 
 ```
 import React, {useState} from "react"
-import PasswordChecklist from "multiple-password-validator"
+import PasswordChecklist from "react-password-validator"
 
 const SignUp = () => {
 	const [password, setPassword] = useState("")
@@ -93,7 +93,7 @@ Valid if the password meets the maximum length. Requires `maxLength` prop to be 
 
 #### specialChar
 
-Valid if the password contains a special character from [this list](https://github.com/DouglasMarq/multiple-password-validator/blob/master/src/index.tsx#L44).
+Valid if the password contains a special character from [this list](https://github.com/DouglasMarq/react-password-validator/blob/master/src/index.tsx#L44).
 
 #### number
 

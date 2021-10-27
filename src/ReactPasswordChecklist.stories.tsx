@@ -14,6 +14,10 @@ storiesOf("ReactPasswordChecklist", module)
 			valueAgain={text("Password Again", "")}
 			minLength={number("Minimum Length", 8)}
 			maxLength={number("Maximum Length", 16)}
+			specialCharLength={number("Special Char Length", 2)}
+			numberLength={number("number Length", 2)}
+			capitalLength={number("capital Length", 2)}
+			lowerCaseLength={number("lowercase Length", 2)}
 			onChange={action("onChange")}
             rtl={boolean('rtl', getDirection() == 'rtl')}
 			rules={

@@ -10,6 +10,10 @@ interface PasswordProps {
 	valueAgain?: string
 	minLength?: number
 	maxLength?: number
+    specialCharLength?: number
+    numberLength?: number
+	capitalLength?: number
+	lowerCaseLength?: number
 	iconSize?: number
 	validColor?: string
 	invalidColor?: string
@@ -43,6 +47,10 @@ const ReactPasswordProps: React.FC<ReactPasswordChecklistProps> = ({
 	valueAgain,
 	minLength,
 	maxLength,
+    specialCharLength,
+    numberLength,
+    capitalLength,
+    lowerCaseLength,
     rtl,
 	onChange,
 	messages = {},
@@ -57,31 +65,30 @@ const ReactPasswordProps: React.FC<ReactPasswordChecklistProps> = ({
 			message: messages.minLength || `Password has more than ${minLength} characters.`,
 		},
 		specialChar: {
-			valid: /[~`!#$%\^&*@+=\-\[\]\\';,/{}|\\":<>\?\.]/g.test(value),
-			message: messages.specialChar || "Password has special characters.",
+			valid: /[~`!#$%\^&*@+=\-\[\]\\';,/{}|\\":<>\?\.]/g.test(value) && value.length >= (specialCharLength || 100),
+			message: messages.specialChar || `Password has more than ${specialCharLength} special characters.`,
 		},
 		number: {
-			valid: /\d/g.test(value),
-			message: messages.number || "Password has a number.",
+			valid: /\d/g.test(value) && value.length >= (numberLength || 100),
+			message: messages.number || `Password has more than ${numberLength || 1} numbers.`,
 		},
 		capital: {
 			valid: (() => {
-				var i = 0
-				if (value.length === 0) {
-					return false
-				}
+				let i = 0
+				if (value.length === 0) return false
+
 				while (i < value.length) {
 					const character = value.charAt(i)
 					if (character == character.toLowerCase()) {
 						// Character is lowercase, numeric, or a symbol
-					} else if (character == character.toUpperCase()) {
+					} else if (character == character.toUpperCase() && value.length >= (capitalLength || 0)) {
 						return true
 					}
 					i++
 				}
 				return false
 			})(),
-			message: messages.capital || "Password has a capital letter.",
+			message: messages.capital || `Password has more than ${capitalLength} capital letters.`,
 		},
 		match: {
 			valid: value.length > 0 && value === valueAgain,
@@ -89,22 +96,21 @@ const ReactPasswordProps: React.FC<ReactPasswordChecklistProps> = ({
 		},
 		lowercase: {
 			valid: (() => {
-				var i = 0
-				if (value.length === 0) {
-					return false
-				}
+				let i = 0
+				if (value.length === 0) return false
+
 				while (i < value.length) {
 					const character = value.charAt(i)
 					if (character == character.toUpperCase()) {
 						// Character is lowercase, numeric, or a symbol
-					} else if (character == character.toLowerCase()) {
+					} else if (character == character.toLowerCase() && value.length >= (lowerCaseLength || 0)) {
 						return true
 					}
 					i++
 				}
 				return false
 			})(),
-			message: messages.lowercase || "Password has a lowercase letter.",
+			message: messages.lowercase || `Password has more than ${lowerCaseLength} lowercase letters.`,
 		},
 		maxLength: {
 			valid: value.length <= (maxLength || 16),

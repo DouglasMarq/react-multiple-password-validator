@@ -36,6 +36,9 @@ const SignUp = () => {
 			<PasswordChecklist
 				rules={["minLength","specialChar","number","capital","match"]}
 				minLength={5}
+				capitalLength={5}
+				lowercaseLength={5}
+				specialCharLength={5}
 				value={password}
 				valueAgain={passwordAgain}
 				onChange={(isValid) => {}}

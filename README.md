@@ -36,9 +36,6 @@ const SignUp = () => {
 			<PasswordChecklist
 				rules={["minLength","specialChar","number","capital","match"]}
 				minLength={5}
-				capitalLength={5}
-				lowercaseLength={5}
-				specialCharLength={5}
 				value={password}
 				valueAgain={passwordAgain}
 				onChange={(isValid) => {}}
@@ -127,6 +124,10 @@ Valid if the password and confirm passwords both contain any character. Requires
 | valueAgain     | Current potential password confirmation                                                                                                                                                                                                   | string   | Only with<br />`match` rule     |
 | minLength      | Minimum Password Length                                                                                                                                                                                                                   | number   | Only with<br />`minLength` rule |
 | maxLength      | Maximum Password Length                                                                                                                                                                                                                   | number   | Only with<br />`maxLength` rule |
+| specialCharLength      | Maximum Special Characters Length                                                                                                                                                                                                  | number   | Only with<br />`specialCharLength` rule |
+| numberLength      | Maximum Number Length                                                                                                                                                                                                                   | number   | Only with<br />`numberLength` rule |
+| capitalLength      | Maximum Capital Length                                                                                                                                                                                                                   | number   | Only with<br />`capitalLength` rule |
+| lowerCaseLength      | Maximum Lower Case Length                                                                                                                                                                                                            | number   | Only with<br />`lowerCaseLength` rule |
 | onChange       | Callback that is triggered when the<br />password becomes valid or invalid across<br />all rules.                                                                                                                                         | function |                                 | `(isValid) => {}` |
 | messages       | Object with keys as rules, and values as strings to use as the message to be displayed                                                                                                                                                    | object   |                                 |
 | className      | Class applied to the entire component                                                                                                                                                                                                     | string   |                                 |

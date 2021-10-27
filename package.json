@@ -1,11 +1,12 @@
 {
-	"name": "react-password-validator",
+	"name": "react-multiple-password-validator",
 	"version": "2021.10.27-.1.0.0",
 	"keywords": [
 		"password",
 		"strength",
 		"indicator",
 		"meter",
+        "multiple",
 		"validator",
 		"validation",
 		"form",
@@ -14,7 +15,7 @@
 		"creation",
 		"signin"
 	],
-	"description": "A React Component to display the success or failure of password strength rules",
+	"description": "A React Component to display the success or failure of multiple password strength rules",
 	"public": true,
 	"main": "dist/index.js",
 	"types": "dist/index.d.ts",

@@ -1,10 +1,11 @@
-import React from "react"
-import { storiesOf } from "@storybook/react"
+import React from "react";
+import { storiesOf } from "@storybook/react";
 import { action } from "@storybook/addon-actions"
-import ReactPasswordChecklist, { RuleNames } from "./index"
+import ReactPasswordChecklist from "./index";
+import { RuleNames } from "./constant";
 
-import { withKnobs, text, number, array, boolean } from "@storybook/addon-knobs"
-import { getDirection } from "@pxblue/storybook-rtl-addon"
+import { withKnobs, text, number, array, boolean } from "@storybook/addon-knobs";
+import { getDirection } from "@pxblue/storybook-rtl-addon";
 
 storiesOf("ReactPasswordChecklist", module)
 	.addDecorator(withKnobs)

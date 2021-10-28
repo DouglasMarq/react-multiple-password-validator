@@ -1,44 +1,7 @@
 import React, { useState, useEffect } from "react"
 import styled from "styled-components"
+import { ReactPasswordChecklistProps, RuleProps, RuleNames } from './constant';
 
-interface CustomIconComponents {
-	ValidIcon: React.ReactNode
-	InvalidIcon: React.ReactNode
-}
-interface PasswordProps {
-	value: string
-	valueAgain?: string
-	minLength?: number
-	maxLength?: number
-    specialCharLength?: number
-    numberLength?: number
-	capitalLength?: number
-	lowerCaseLength?: number
-	iconSize?: number
-	validColor?: string
-	invalidColor?: string
-	onChange?: (isValid: boolean) => any
-	messages?: {
-		[key in RuleNames]?: string
-	}
-	iconComponents?: CustomIconComponents
-}
-export type RuleNames =
-	| "minLength"
-	| "maxLength"
-	| "specialChar"
-	| "number"
-	| "capital"
-	| "match"
-	| "lowercase"
-	| "notEmpty"
-
-export interface ReactPasswordChecklistProps extends PasswordProps {
-	className?: string
-	style?: React.CSSProperties
-	rules: Array<RuleNames>
-    rtl?: boolean
-}
 const ReactPasswordProps: React.FC<ReactPasswordChecklistProps> = ({
 	className,
 	style,
@@ -47,18 +10,18 @@ const ReactPasswordProps: React.FC<ReactPasswordChecklistProps> = ({
 	valueAgain,
 	minLength,
 	maxLength,
-    specialCharLength,
-    numberLength,
-    capitalLength,
-    lowerCaseLength,
+    specialCharLength = 0,
+    numberLength = 0,
+    capitalLength = 0,
+    lowerCaseLength = 0,
     rtl,
 	onChange,
 	messages = {},
 	...remainingProps
 }) => {
-	const [isValid, setIsValid] = useState(false)
+	const [isValid, setIsValid] = useState(false);
 	const ruleDefinitions: {
-		[key in RuleNames]: { valid: boolean; message: string }
+		[key in RuleNames]: { valid: boolean; message: string, length?: number | null }
 	} = {
 		minLength: {
 			valid: value.length >= (minLength || 100),
@@ -67,28 +30,23 @@ const ReactPasswordProps: React.FC<ReactPasswordChecklistProps> = ({
 		specialChar: {
 			valid: /[~`!#$%\^&*@+=\-\[\]\\';,/{}|\\":<>\?\.]/g.test(value) && value.length >= (specialCharLength || 100),
 			message: messages.specialChar || `Password has more than ${specialCharLength} special characters.`,
-		},
+            length: specialCharLength || null,
+        },
 		number: {
 			valid: /\d/g.test(value) && value.length >= (numberLength || 100),
-			message: messages.number || `Password has more than ${numberLength || 1} numbers.`,
-		},
+			message: messages.number || `Password has more than ${numberLength || 0} numbers.`,
+            length: numberLength || null,
+        },
 		capital: {
 			valid: (() => {
-				let i = 0
 				if (value.length === 0) return false
 
-				while (i < value.length) {
-					const character = value.charAt(i)
-					if (character == character.toLowerCase()) {
-						// Character is lowercase, numeric, or a symbol
-					} else if (character == character.toUpperCase() && value.length >= (capitalLength || 0)) {
-						return true
-					}
-					i++
-				}
+				if ((value.length - value.replace(/[A-Z]/g, '').length) >= (capitalLength || 0)) return true;
+
 				return false
 			})(),
 			message: messages.capital || `Password has more than ${capitalLength} capital letters.`,
+            length: capitalLength || null,
 		},
 		match: {
 			valid: value.length > 0 && value === valueAgain,
@@ -96,22 +54,15 @@ const ReactPasswordProps: React.FC<ReactPasswordChecklistProps> = ({
 		},
 		lowercase: {
 			valid: (() => {
-				let i = 0
 				if (value.length === 0) return false
 
-				while (i < value.length) {
-					const character = value.charAt(i)
-					if (character == character.toUpperCase()) {
-						// Character is lowercase, numeric, or a symbol
-					} else if (character == character.toLowerCase() && value.length >= (lowerCaseLength || 0)) {
-						return true
-					}
-					i++
-				}
+                if ((value.length - value.replace(/[a-z]/g, '').length) >= (lowerCaseLength || 0)) return true;
+
 				return false
 			})(),
-			message: messages.lowercase || `Password has more than ${lowerCaseLength} lowercase letters.`,
-		},
+			message: messages.lowercase || `Password has more than ${lowerCaseLength || 0} lowercase letters.`,
+            length: lowerCaseLength || null,
+        },
 		maxLength: {
 			valid: value.length <= (maxLength || 16),
 			message: messages.maxLength || `Password has no more than ${maxLength} characters.`,
@@ -121,9 +72,9 @@ const ReactPasswordProps: React.FC<ReactPasswordChecklistProps> = ({
 			message: messages.notEmpty || "Password fields are not empty.",
 		},
 	}
-	const enabledRules = rules.filter((rule) => Boolean(ruleDefinitions[rule]))
+	const enabledRules = rules.filter((rule: any) => Boolean(ruleDefinitions[rule]))
 	useEffect(() => {
-		if (enabledRules.every((rule) => ruleDefinitions[rule].valid)) {
+		if (enabledRules.every((rule: any) => ruleDefinitions[rule].valid)) {
 			setIsValid(true)
 		} else {
 			setIsValid(false)
@@ -141,8 +92,9 @@ const ReactPasswordProps: React.FC<ReactPasswordChecklistProps> = ({
 
 	return (
 		<UL className={className} style={style}>
-			{enabledRules.map((rule) => {
-				const { message, valid } = ruleDefinitions[rule]
+			{enabledRules.map((rule: any) => {
+				const { message, valid, length } = ruleDefinitions[rule];
+                if(length === null) return;
 				return (
 					<Rule key={rule} valid={valid} {...remainingProps}>
 						{message}
@@ -153,13 +105,7 @@ const ReactPasswordProps: React.FC<ReactPasswordChecklistProps> = ({
 	)
 }
 
-interface RuleProps {
-	valid: boolean
-	iconSize?: number
-	iconComponents?: CustomIconComponents
-	validColor?: string
-	invalidColor?: string
-}
+
 const Rule: React.FC<RuleProps> = ({
 	valid,
 	iconSize,

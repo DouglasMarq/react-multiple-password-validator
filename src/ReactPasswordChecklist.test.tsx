@@ -107,30 +107,30 @@ describe("ReactPasswordChecklist Test Suite", () => {
 	})
 	describe("specialChar", () => {
 		it("Displays the default specialChar message", () => {
-			const result = mount(<ReactPasswordChecklist rules={["specialChar"]} value="" />)
-			expect(result.find("span").text()).toEqual("Password has special characters.")
+			const result = mount(<ReactPasswordChecklist rules={["specialChar"]} specialCharLength={2} value="" />)
+			expect(result.find("span").text()).toEqual("Password has more than 2 special characters.")
 		})
 		it("Sets invalid", () => {
 			const result = mount(<ReactPasswordChecklist rules={["specialChar"]} value="" />)
 			expect(result.find("li").hasClass("invalid")).toBeTruthy()
 		})
 		it("Sets valid with !", () => {
-			const result = mount(<ReactPasswordChecklist rules={["specialChar"]} value="!" />)
+			const result = mount(<ReactPasswordChecklist rules={["specialChar"]} specialCharLength={1} value="!" />)
 			expect(result.find("li").hasClass("valid")).toBeTruthy()
 		})
 		it("Sets valid with @", () => {
-			const result = mount(<ReactPasswordChecklist rules={["specialChar"]} value="@" />)
+			const result = mount(<ReactPasswordChecklist rules={["specialChar"]} specialCharLength={1} value="@" />)
 			expect(result.find("li").hasClass("valid")).toBeTruthy()
 		})
 		it("Sets valid with .", () => {
-			const result = mount(<ReactPasswordChecklist rules={["specialChar"]} value="." />)
+			const result = mount(<ReactPasswordChecklist rules={["specialChar"]} specialCharLength={1} value="." />)
 			expect(result.find("li").hasClass("valid")).toBeTruthy()
 		})
 	})
 	describe("capital", () => {
 		it("Displays the default capital message", () => {
-			const result = mount(<ReactPasswordChecklist rules={["capital"]} value="" />)
-			expect(result.find("span").text()).toEqual("Password has a capital letter.")
+			const result = mount(<ReactPasswordChecklist rules={["capital"]} capitalLength={2} value="" />)
+			expect(result.find("span").text()).toEqual("Password has more than 2 capital letters.")
 		})
 		it("Sets invalid", () => {
 			const result = mount(<ReactPasswordChecklist rules={["capital"]} value="as;lkj23408" />)
@@ -143,8 +143,8 @@ describe("ReactPasswordChecklist Test Suite", () => {
 	})
 	describe("lowercase", () => {
 		it("Displays the default lowercase message", () => {
-			const result = mount(<ReactPasswordChecklist rules={["lowercase"]} value="" />)
-			expect(result.find("span").text()).toEqual("Password has a lowercase letter.")
+			const result = mount(<ReactPasswordChecklist rules={["lowercase"]} lowerCaseLength={2} value="" />)
+			expect(result.find("span").text()).toEqual("Password has more than 2 lowercase letters.")
 		})
 		it("Sets invalid", () => {
 			const result = mount(

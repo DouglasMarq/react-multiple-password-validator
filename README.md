@@ -1,7 +1,7 @@
 # React Multiple Password Validator
 
 [![npm version](https://img.shields.io/npm/v/react-multiple-password-validator)](https://www.npmjs.com/package/react-multiple-password-validator) ![Minzipped Size](https://img.shields.io/bundlephobia/minzip/react-multiple-password-validator) ![NPM Downloads](https://img.shields.io/npm/dw/react-multiple-password-validator) ![NPM License](https://img.shields.io/npm/l/react-multiple-password-validator)
-<br /> [![Build Status](https://api.travis-ci.com/DouglasMarq/react-multiple-password-validator.svg?branch=master&status=passed)](https://app.travis-ci.com/github/DouglasMarq/react-multiple-password-validator) [![Coverage Status](https://coveralls.io/repos/github/DouglasMarq/react-multiple-password-validator/badge.svg?branch=master)](https://coveralls.io/github/DouglasMarq/react-multiple-password-validator?branch=master) [![Issues](https://img.shields.io/github/issues/DouglasMarq/react-multiple-password-validator)](https://github.com/DouglasMarq/react-multiple-password-validator/issues) [![Pull Requests](https://img.shields.io/github/issues-pr/DouglasMarq/react-multiple-password-validator)](https://github.com/DouglasMarq/react-multiple-password-validator/pulls) [![Twitter](https://img.shields.io/twitter/follow/IDPBBrisa.svg?style=social&label=@IDPBBrisa)](https://twitter.com/IDPBBrisa)
+<br /> [![Issues](https://img.shields.io/github/issues/DouglasMarq/react-multiple-password-validator)](https://github.com/DouglasMarq/react-multiple-password-validator/issues) [![Pull Requests](https://img.shields.io/github/issues-pr/DouglasMarq/react-multiple-password-validator)](https://github.com/DouglasMarq/react-multiple-password-validator/pulls) [![Twitter](https://img.shields.io/twitter/follow/IDPBBrisa.svg?style=social&label=@IDPBBrisa)](https://twitter.com/IDPBBrisa)
 
 A React Component to display the success or failure of password strength rules that updates as a user types.
 
@@ -36,6 +36,10 @@ const SignUp = () => {
 			<PasswordChecklist
 				rules={["minLength","specialChar","number","capital","match"]}
 				minLength={5}
+                specialCharLength={2}
+                numberLength={2}
+                capitalLength={2}
+                lowerCaseLength={2}
 				value={password}
 				valueAgain={passwordAgain}
 				onChange={(isValid) => {}}
@@ -66,12 +70,17 @@ const SignUp = () => {
 				minLength={8}
 				value={password}
 				valueAgain={passwordAgain}
+                specialCharLength={2}
+                numberLength={2}
+                capitalLength={2}
+                lowerCaseLength={2}
 				messages={{
-					minLength: "La contraseña tiene más de 8 caracteres.",
-					specialChar: "La contraseña tiene caracteres especiales.",
-					number: "La contraseña tiene un número.",
-					capital: "La contraseña tiene una letra mayúscula.",
-					match: "Las contraseñas coinciden.",
+					minLength: `Password has ${minLength} minimum length.`,
+                    specialChar: `Password has ${specialCharLength} special characters.`,
+                    lowercase: `Password has ${lowerCaseLength} lowercase letters.`,
+                    number: `Password has ${numberLength} numbers.`,
+                    capital: `Password has ${capitalLength} capital letters.`,
+                    match: `Passwords match.`,
 				}}
 			/>
 		</form>

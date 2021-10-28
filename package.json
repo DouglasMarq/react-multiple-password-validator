@@ -1,12 +1,12 @@
 {
 	"name": "react-multiple-password-validator",
-	"version": "2021.10.28-1.1.1",
+	"version": "2021.10.28-1.1.2",
 	"keywords": [
 		"password",
 		"strength",
 		"indicator",
 		"meter",
-        "multiple",
+		"multiple",
 		"validator",
 		"validation",
 		"form",
@@ -25,7 +25,6 @@
 	"scripts": {
 		"build": "tsc",
 		"build-storybook": "build-storybook",
-		"coveralls": "jest --coverage && cat ./coverage/lcov.info | coveralls",
 		"prepare": "npm run build",
 		"storybook": "start-storybook -p 9009",
 		"test": "jest",
@@ -49,30 +48,23 @@
 		"react": "^16.8.0||~17.0.2"
 	},
 	"devDependencies": {
-		"@babel/plugin-syntax-logical-assignment-operators": "^7.10.4",
 		"@pxblue/storybook-rtl-addon": "1.0.1",
 		"@storybook/addon-actions": "6.2.8",
 		"@storybook/addon-knobs": "6.2.8",
 		"@storybook/react": "6.2.8",
 		"@types/enzyme": "^3.10.5",
 		"@types/enzyme-adapter-react-16": "^1.0.6",
-		"@types/jest": "^26.0.9",
 		"@types/storybook__addon-knobs": "5.2.1",
 		"@types/storybook__react": "5.2.1",
 		"@types/styled-components": "^5.1.2",
 		"babel-loader": "^8.1.0",
-		"babel-plugin-polyfill-corejs2": "^0.2.2",
-		"babel-plugin-polyfill-regenerator": "^0.2.2",
-		"babel-preset-react-app": "^9.1.2",
-		"coveralls": "^3.1.0",
+		"babel-preset-react-app": "^10.0.0",
 		"enzyme": "^3.11.0",
 		"enzyme-adapter-react-16": "^1.15.3",
 		"jest": "^26.2.2",
 		"react": "^16.8.0",
-		"react-docgen-typescript-loader": "^3.7.2",
 		"react-dom": "^16.8.0",
 		"ts-jest": "^26.1.4",
-		"ts-loader": "^8.0.2",
 		"typescript": "^4.4.4"
 	}
 }

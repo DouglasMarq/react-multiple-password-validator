@@ -1,16 +1,16 @@
 import React from "react";
 import { storiesOf } from "@storybook/react";
 import { action } from "@storybook/addon-actions"
-import ReactPasswordChecklist from "./index";
+import PasswordValidator from "./index";
 import { RuleNames } from "./constant";
 
 import { withKnobs, text, number, array, boolean } from "@storybook/addon-knobs";
 import { getDirection } from "@pxblue/storybook-rtl-addon";
 
-storiesOf("ReactPasswordChecklist", module)
+storiesOf("PasswordValidator", module)
 	.addDecorator(withKnobs)
 	.add("Default", () => (
-		<ReactPasswordChecklist
+		<PasswordValidator
 			value={text("Password", "")}
 			valueAgain={text("Password Again", "")}
 			minLength={number("Minimum Length", 8)}
@@ -36,7 +36,7 @@ storiesOf("ReactPasswordChecklist", module)
 		/>
 	))
 	.add("Custom Messages", () => (
-		<ReactPasswordChecklist
+		<PasswordValidator
 			value={text("Password", "")}
 			valueAgain={text("Password Again", "")}
 			minLength={number("Minimum Length", 8)}
@@ -60,7 +60,7 @@ storiesOf("ReactPasswordChecklist", module)
 			}}
 		/>
 	)).add("Custom Messages RTL (Persian)", () => (
-		<ReactPasswordChecklist
+		<PasswordValidator
 			value={text("Password", "")}
 			valueAgain={text("Password Again", "")}
 			minLength={8}
